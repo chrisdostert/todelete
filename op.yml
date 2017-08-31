@@ -1,2 +1,5 @@
 name: todelete
-asdf
+version: 0.0.0
+run:
+  container:
+    image: { ref: alpine }
