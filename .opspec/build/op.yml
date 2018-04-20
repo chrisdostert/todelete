@@ -1,0 +1,18 @@
+name: build
+description: builds the package
+inputs:
+  srcDir:
+    dir:
+      default: .
+run:
+  serial:
+    - op:
+        pkg: { ref: github.com/opspec-pkgs/git.repo.resolve-commit#1.0.2 }
+        inputs: { dotGitDir: $(srcDir/.git) }
+        outputs: { commit: }
+    - container:
+        image: { ref: alpine }
+        cmd:
+        - sh
+        - -ce
+        - echo $(commit)
